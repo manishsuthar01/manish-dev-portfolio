@@ -73,7 +73,7 @@ const HeroSection = () => {
           className="img w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full border-4 md:border-4 border-primary shadow-2xl z-500"
         >
           <img
-            src="../../src/assets/images/hero.png"
+            src="/hero.png"
             alt="Hero"
             className="w-full h-full object-cover"
           />

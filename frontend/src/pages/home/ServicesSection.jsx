@@ -2,10 +2,11 @@ import React from "react";
 
 const ServicesSection = () => {
   const services = [
-    "Full-Stack Development",
-    "Frontend / UI Engineering",
-    "System Architecture & APIs",
-  ];
+  "Full-Stack Engineering",
+  "Frontend Systems & UI Architecture",
+  "Backend APIs & Infrastructure",
+];
+
 
   return (
     <section className="mt-10 py-12 md:py-20 mx-auto flex flex-col items-center w-full overflow-hidden">
@@ -15,7 +16,7 @@ const ServicesSection = () => {
         </h2>
       </div>
 
-      <div className="w-full border-t border-border">
+      <div className="w-full border-t border-border/50">
         {services.map((service, index) => (
           <div
             key={index}

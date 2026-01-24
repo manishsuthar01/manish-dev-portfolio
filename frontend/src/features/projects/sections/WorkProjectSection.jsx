@@ -32,7 +32,7 @@ const WorkProjectSection = ({ projects }) => {
         });
       });
     },
-    { scope: container, dependencies: [projectArray] }
+    { scope: container, dependencies: [projectArray] },
   );
 
   return (
@@ -51,8 +51,7 @@ const WorkProjectSection = ({ projects }) => {
             onClick={() => navigate(`/work/${project.slug}`)}
           >
             <div className="project-row w-full h-[30vh] overflow-hidden origin-top cursor-pointer group relative rounded-2xl md:rounded-3xl shadow-xl">
-              
-              <ProjectCard image={project.imageUrl} />
+              <ProjectCard imageUrl={project.imageUrl} />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6 md:p-12 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                 <p className="font-jakarta text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/60 mb-2 md:mb-4">
@@ -61,12 +60,11 @@ const WorkProjectSection = ({ projects }) => {
                 <h3 className="font-jakarta text-2xl md:text-5xl lg:text-6xl font-light text-white uppercase tracking-tight">
                   {project.title || "View Project"}
                 </h3>
-                
+
                 <div className="mt-4 md:hidden flex items-center gap-2 text-white/80 text-[10px] uppercase tracking-widest font-bold">
-                   View Project <span className="text-lg">→</span>
+                  View Project <span className="text-lg">→</span>
                 </div>
               </div>
-              
             </div>
           </div>
         ))}

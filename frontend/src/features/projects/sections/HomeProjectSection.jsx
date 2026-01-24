@@ -84,8 +84,8 @@ const HomeProjectSection = ({ projects }) => {
             >
               <img
                 src={
-                  project.imageURL ||
-                  "https://framerusercontent.com/images/I2DGsvE6BPFKwR3seUVB72UVU.png"
+                  project.imageUrl
+                   || "https://framerusercontent.com/images/I2DGsvE6BPFKwR3seUVB72UVU.png"
                 }
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 alt={project.title}

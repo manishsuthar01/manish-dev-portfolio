@@ -47,7 +47,7 @@ const Header = () => {
             ${showNavImage ? "w-8 h-8 opacity-100 ml-2" : "w-0 h-0 opacity-0 ml-0"}`}
           >
             <img
-              src="/src/assets/images/hero.png"
+              src="/hero.png"
               className="w-full h-full object-cover"
               alt="Nav Profile"
             />
