@@ -14,7 +14,7 @@ import LoginPage from "./pages/auth/LoginPage";
 import RequireAuth from "./features/auth/guards/RequireAuth";
 import DashboardLayout from "./layouts/dashboardLayout/DashboardLayout";
 import CreateBlogPage from "./pages/dashboard/blog/CreateBlogPage";
-import AdminProjectPage from "./pages/dashboard/projects/adminProjectPage";
+import AdminProjectPage from "./pages/dashboard/projects/AdminProjectPage";
 import AdminBlogPage from "./pages/dashboard/blog/AdminBlogPage";
 import AdminAnalyticsPage from "./pages/dashboard/analytics/AnalyticsPage";
 import CustomCursor from "./components/CustomCursor";
