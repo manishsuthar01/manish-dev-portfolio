@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { Toaster } from "react-hot-toast";
+import { Navigate, Route, Routes } from "react-router-dom";
+import PublicLayout from "./layouts/PublicLayout/PublicLayout";
+import HomePage from "./pages/home/HomePage";
+import AboutPage from "./pages/about/AboutPage";
+import ContactPage from "./pages/contact/ContactPage";
+import WorkPage from "./pages/work/WorkPage";
+import ProjectDetailPage from "./pages/project/ProjectDetailPage";
+import BlogPage from "./pages/blog/BlogPage";
+import BlogDetailPage from "./pages/blog/BlogDetailPage";
+import NotFoundPange from "./pages/not-found/NotFoundPage";
+import LoginPage from "./pages/auth/LoginPage";
+import RequireAuth from "./features/auth/guards/RequireAuth";
+import DashboardLayout from "./layouts/dashboardLayout/DashboardLayout";
+import CreateBlogPage from "./pages/dashboard/blog/CreateBlogPage";
+import AdminProjectPage from "./pages/dashboard/projects/adminProjectPage";
+import AdminBlogPage from "./pages/dashboard/blog/AdminBlogPage";
+import AdminAnalyticsPage from "./pages/dashboard/analytics/AnalyticsPage";
+import CustomCursor from "./components/CustomCursor";
+import { GlobalLoader } from "./components/GlobalLoader";
+import { useLoading } from "./context/LoadingContext";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const { isPageLoading } = useLoading();
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <GlobalLoader isVisible={isPageLoading} />
+      <CustomCursor />
 
-export default App
+      <Routes>
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/work" element={<WorkPage />} />
+          <Route path="/work/:slug" element={<ProjectDetailPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
+          <Route path="/login" element={<LoginPage />}></Route>
+        </Route>
+
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <DashboardLayout />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<AdminAnalyticsPage />} />
+          <Route path="blog" element={<AdminBlogPage />} />
+          <Route path="blog/new" element={<CreateBlogPage />} />
+          <Route path="projects" element={<AdminProjectPage />} />
+          {/* <Route path="projects/new" element={<CreateProjectPage />} /> */}
+
+          {/* <Route path="blog/:id/edit" element={<EditBlogPage />} /> */}
+          {/* <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="projects/:id/edit" element={<EditProjectPage />} /> */}
+        </Route>
+
+        <Route path="/*" element={<NotFoundPange />}></Route>
+      </Routes>
+
+      <Toaster />
+    </>
+  );
+};
+
+export default App;

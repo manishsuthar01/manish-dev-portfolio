@@ -11,7 +11,7 @@ const {
 } = require("./project.admin.service");
 const { errorResponse, successResponse } = require("../../utils/response");
 
-async function getAdminProjects() {
+async function getAdminProjects(req, res) {
   try {
     const projects = await fetchAdminProjects();
     return successResponse(res, { data: projects });
