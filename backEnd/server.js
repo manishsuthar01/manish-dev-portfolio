@@ -41,6 +41,9 @@ app.use(express.json()); //to parse the incoming req with json payload
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // ROUTES
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
+});
 app.use("/api", indexRouter);
 app.use((req, res) => {
   console.log("serving static files");
