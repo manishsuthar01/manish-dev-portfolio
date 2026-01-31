@@ -28,8 +28,7 @@ The repository is organized into a monorepo-like structure with two main directo
 │   ├── db/              # Mongoose models (User, Blog, Project)
 │   ├── modules/         # Feature-sliced logic (auth, admin, blog, project)
 │   ├── middleware/      # Auth, role checks, rate limiting, file uploads
-│   ├── routes/          # Main API router
-│   ├── scripts/         # Script to create an initial admin user
+│   ├── routes/          # Main API routes
 │   └── server.js        # Express server entry point
 └── frontend/
     ├── src/
@@ -81,12 +80,6 @@ Follow these instructions to get a copy of the project up and running on your lo
     The root `package.json` is configured to install dependencies for both the backend and frontend.
     ```bash
     npm install
-    ```
-
-4.  **Create an Admin User:**
-    Run the script to create the initial admin user in your database using the credentials from your `.env` file.
-    ```bash
-    node backEnd/scripts/createAdmin.js
     ```
 
 5.  **Run the Application:**
