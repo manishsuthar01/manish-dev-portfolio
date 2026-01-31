@@ -63,12 +63,7 @@ Follow these instructions to get a copy of the project up and running on your lo
     ```env
     PORT=5000
     MONGO_URI=your_mongodb_connection_string
-    JWT_KEY=your_secret_jwt_key
-
-    # Admin user credentials for initial setup
-    ADMIN_USERNAME=your_admin_username
-    ADMIN_PASSWORD=your_admin_password
-    ADMIN_FULL_NAME="Your Full Name"
+    JWT_KEY=your_secret_jwt_
 
     # Cloudinary credentials for image uploads
     CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
