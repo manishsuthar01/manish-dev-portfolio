@@ -8,12 +8,12 @@ const SmoothScroll = ({ children }) => {
     const lenis = new Lenis({
       duration: 1.9,
       orientation: "vertical",
-    //   lerp: 0.08,
-      wheelMultiplier: 0.9,
+      lerp: 0.08,
+      wheelMultiplier: 0.5,
       infinite: false,
       gestureOrientation: "vertical",
       normalizeWheel: true,
-      smoothWheel: true,
+      smoothWheel: true,  
     });
 
     lenis.on("scroll", ScrollTrigger.update);

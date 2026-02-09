@@ -15,6 +15,8 @@ const leftSkills = [
   { name: "Docker", icon: "docker" },
   { name: "Git", icon: "git" },
   { name: "Figma", icon: "figma" },
+  { name: "Express.js", icon: "express" },
+  { name: "Vercel", icon: "vercel" },
 ];
 const rightSkills = [
   { name: "Node.js", icon: "nodejs" },
@@ -29,6 +31,8 @@ const rightSkills = [
   { name: "Docker", icon: "docker" },
   { name: "Git", icon: "git" },
   { name: "Figma", icon: "figma" },
+  { name: "Express.js", icon: "express" },
+  { name: "Vercel", icon: "vercel" },
 ];
 
 const SkillsSection = () => {
@@ -106,7 +110,7 @@ const SkillsSection = () => {
               <img
                 src={`https://skillicons.dev/icons?i=${skill.icon}`}
                 alt={skill.name}
-                className="md:w-10 md:h-10 w-5 h-5 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
+                className="md:w-10 md:h-10 w-8 h-8 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
               />
             </div>
           ))}

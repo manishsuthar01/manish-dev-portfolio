@@ -30,7 +30,7 @@ const BlogTable = ({ deleteBlog, blogs, setBlogs }) => {
           </button>
         </div>
       </div>
-
+ 
       <div className="w-full overflow-hidden rounded-lg border border-border bg-background shadow-sm">
         <table className="w-full border-collapse">
           <thead>
@@ -52,7 +52,7 @@ const BlogTable = ({ deleteBlog, blogs, setBlogs }) => {
 
           <tbody className="divide-y divide-border">
             {blogs?.map((blog) => (
-              <tr key={blog} className="group transition-colors ">
+              <tr key={blog.slug} className="group transition-colors ">
                 <td className="px-6 py-5">
                   <div className="flex flex-col">
                     <span
@@ -92,7 +92,9 @@ const BlogTable = ({ deleteBlog, blogs, setBlogs }) => {
 
                 <td className="px-6 py-5 text-right">
                   <div className="flex justify-end items-center gap-4">
-                    <button className="text-sm font-weight-semibold text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">
+                    <button
+                      onClick={() => navigate(`/dashboard/blog/${blog.slug}/edit`)}
+                      className="text-sm font-weight-semibold text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">
                       Edit
                     </button>
                     <button
