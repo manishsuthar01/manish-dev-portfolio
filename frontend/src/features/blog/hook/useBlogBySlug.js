@@ -25,7 +25,7 @@ const useBlogBySlug = (slug) => {
     getBlogBySlug();
   }, [slug]);
 
-  return { blog, loading };
+  return { blog, loading }; 
 };
 
 export default useBlogBySlug;

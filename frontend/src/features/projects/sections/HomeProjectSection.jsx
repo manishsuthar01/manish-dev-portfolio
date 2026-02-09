@@ -23,9 +23,10 @@ const HomeProjectSection = ({ projects }) => {
         isMobile: "(max-width: 767px)",
       },
       (context) => {
-        let { isDesktop } = context.conditions;
+        let { isDesktop, isMobile } = context.conditions;
 
         if (isDesktop) {
+          // Desktop Pinning Logic
           ScrollTrigger.create({
             trigger: sectionRef.current,
             start: "top top",
@@ -48,14 +49,38 @@ const HomeProjectSection = ({ projects }) => {
                   gsap.fromTo(
                     ".project-content",
                     { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+                    { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
                   );
                 }
               },
             });
           });
         }
-      },
+
+        if (isMobile) {
+          // Mobile Entrance Animations
+          const mobileBoxes = gsap.utils.toArray(".image-box");
+          mobileBoxes.forEach((box) => {
+            gsap.fromTo(
+              box,
+              { opacity: 0.8, y: 40, scale: 0.95 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: box,
+                  start: "top 85%",
+                  end: "top 50%",
+                  scrub: true,
+                },
+              }
+            );
+          });
+        }
+      }
     );
 
     return () => mm.revert();
@@ -64,9 +89,10 @@ const HomeProjectSection = ({ projects }) => {
   if (!ProjectArray.length) return null;
 
   return (
-    <section className="mx-auto md:px-5  px-0 py-24 flex flex-col items-center w-full">
-      <div className="mb-20 md:mb-30 max-w-xl text-center">
-        <h2 className="font-jakarta font-light tracking-tight text-4xl md:text-7xl text-foreground">
+    <section className="mx-auto md:px-5 px-4 py-16 md:py-24 flex flex-col items-center w-full overflow-hidden">
+      {/* Header */}
+      <div className="mb-12 md:mb-30 max-w-2xl text-center px-4">
+        <h2 className="font-jakarta font-light tracking-tight text-4xl md:text-7xl text-foreground leading-tight">
           Projects that reflect how I think and build.
         </h2>
       </div>
@@ -75,50 +101,54 @@ const HomeProjectSection = ({ projects }) => {
         ref={sectionRef}
         className="relative flex flex-col md:flex-row justify-center gap-0 w-full"
       >
-        <div className="w-full md:w-1/2 flex flex-col md:gap-[10vh] gap-5 p-4 md:p-7">
+        {/* Left Column (Images on Desktop, Main List on Mobile) */}
+        <div className="w-full md:w-1/2 flex flex-col md:gap-[10vh] gap-8">
           {ProjectArray.map((project, i) => (
             <div
               key={i}
               onClick={() => navigate(`/work/${project.slug}`)}
-              className="image-box group relative w-full h-[70vh] md:h-[80vh] rounded-2xl overflow-hidden shadow-2xl bg-gray-200 cursor-pointer hover:rounded-3xl"
+              className="image-box group relative w-full h-[60vh] md:h-[80vh] rounded-2xl overflow-hidden shadow-xl bg-gray-200 cursor-pointer"
             >
               <img
-                src={
-                  project.imageUrl
-                   || "https://framerusercontent.com/images/I2DGsvE6BPFKwR3seUVB72UVU.png"
-                }
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                src={project.imageUrl || "https://framerusercontent.com/images/I2DGsvE6BPFKwR3seUVB72UVU.png"}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 alt={project.title}
               />
 
-              <div className="absolute inset-0 bg-linear-to-t from-foreground via-black/20 to-transparent flex flex-col justify-end p-6 md:hidden">
-                <h3 className="text-white font-jakarta text-2xl font-light mb-2">
+              {/* Mobile Info Overlay (Only visible on mobile) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6 md:hidden">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-white/70 mb-1">
+                  Featured Project
+                </span>
+                <h3 className="text-white font-jakarta text-2xl font-light mb-3">
                   {project.title}
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.techStack?.slice(0, 3).map((t) => (
                     <span
                       key={t}
-                      className="px-2 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded text-[10px] text-white uppercase tracking-widest"
+                      className="px-2 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-md text-[9px] text-white uppercase tracking-widest"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
+               
               </div>
             </div>
           ))}
         </div>
 
+        {/* Right Column (Fixed Desktop Content) */}
         <div
           ref={rightColumnRef}
-          className="hidden md:flex w-full md:w-1/2 h-screen items-center justify-start sticky md:-top-10  px-10"
+          className="hidden md:flex w-full md:w-1/2 h-screen items-center justify-start sticky md:-top-10 px-10"
         >
-          <div className="project-content w-full ">
+          <div className="project-content w-full">
             <span className="font-jakarta text-muted-foreground font-light uppercase tracking-wide text-sm">
               Featured Project
             </span>
-            <h3 className="text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1] font-jakarta font-light  mb-6">
+            <h3 className="text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1] font-jakarta font-light mb-6">
               {ProjectArray[activeIndex]?.title}
             </h3>
             <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-instrument leading-relaxed text-muted-foreground max-w-[90%]">
@@ -150,7 +180,7 @@ const HomeProjectSection = ({ projects }) => {
 
       <button
         onClick={() => navigate("/work")}
-        className="mt-20 rounded-full px-8 py-3 bg-[#F7F780] text-foreground text-[12px] uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
+        className="mt-16 md:mt-20 rounded-full px-8 py-3 bg-[#F7F780] text-foreground text-[12px] uppercase tracking-widest hover:bg-foreground hover:text-background transition-all shadow-lg"
       >
         View all projects
       </button>

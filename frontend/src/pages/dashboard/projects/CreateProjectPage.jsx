@@ -1,9 +1,17 @@
-import React from 'react'
+import ProjectForm from "@/features/projects/components/ProjectForm";
+import useNewProject from "@/features/projects/hooks/useNewProject";
+import React from "react";
 
 const CreateProjectPage = () => {
-  return (
-    <div>CreateProjectPage</div>
-  )
-}
+  const { createNewProject, loading } = useNewProject();
 
-export default CreateProjectPage
+  return (
+    <ProjectForm
+      onSubmit={createNewProject}
+      isSubmitting={loading}
+      initialData={null}
+    />
+  );
+};
+
+export default CreateProjectPage;

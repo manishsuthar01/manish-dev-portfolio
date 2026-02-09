@@ -1,3 +1,4 @@
+import { Files } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const BlogForm = ({ initialData = null, onSubmit, isSubmitting }) => {
@@ -14,6 +15,7 @@ const BlogForm = ({ initialData = null, onSubmit, isSubmitting }) => {
 
   useEffect(() => {
     if (initialData) {
+      console.log("Initial Data:", initialData);
       setForm({
         title: initialData.title || "",
         excerpt: initialData.excerpt || "",
@@ -34,13 +36,13 @@ const BlogForm = ({ initialData = null, onSubmit, isSubmitting }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const FromData = new FormData();
-    FromData.append("title", form.title);
-    FromData.append("content", form.content);
-    FromData.append("excerpt", form.excerpt);
-    FromData.append("image", form.image);
-    FromData.append("status", form.status);
-    onSubmit(FromData);
+    const Data = new FormData();
+    Data.append("title", form.title);
+    Data.append("content", form.content);
+    Data.append("excerpt", form.excerpt);
+    Data.append("image", form.imageUrl);
+    Data.append("status", form.status);
+    onSubmit({ FormData: Data, blogID: initialData?._id });
   };
 
   return (
@@ -72,13 +74,11 @@ const BlogForm = ({ initialData = null, onSubmit, isSubmitting }) => {
         </div>
 
         <div className="md:col-span-2">
-          <label className="text-sm font-medium text-foreground">
-            Image URL
-          </label>
+          <label className="text-sm font-medium text-foreground">Image</label>
           <input
             type="file"
             name="imageUrl"
-            value={form.imageUrl}
+            // value={form.imageUrl}
             onChange={handleChange}
             className="mt-2 w-full rounded-md border border-border bg-background px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
           />
@@ -90,7 +90,7 @@ const BlogForm = ({ initialData = null, onSubmit, isSubmitting }) => {
             name="excerpt"
             value={form.excerpt}
             onChange={handleChange}
-            rows={3}
+            rows={5}
             className="mt-2 w-full rounded-md border border-border bg-background px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>

@@ -1,22 +1,22 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const useNewBlog = () => {
   const [loading, setLoading] = useState(false);
 
-  const createNewBlog = async (formDataInstance) => {
+  const createNewBlog = async ({ FormData }) => {
     setLoading(true);
-    console.log(formDataInstance);
     try {
       const res = await fetch("/api/admin/blogs", {
         method: "POST",
-        body: formDataInstance,
+        body: FormData,
       });
 
       const data = await res.json();
       if (res.ok) {
         toast.success("Blog created Successfully!");
       } else throw new Error(data.message || "Blog Creation failed!");
-    } catch (error) {
+    } catch (error) { 
       toast.error(error.message);
     } finally {
       setLoading(false);

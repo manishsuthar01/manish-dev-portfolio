@@ -20,6 +20,9 @@ import AdminAnalyticsPage from "./pages/dashboard/analytics/AnalyticsPage";
 import CustomCursor from "./components/CustomCursor";
 import { GlobalLoader } from "./components/GlobalLoader";
 import { useLoading } from "./context/LoadingContext";
+import EditBlogPage from "./pages/dashboard/blog/EditBlogPage";
+import CreateProjectPage from "./pages/dashboard/projects/CreateProjectPage";
+import EditProjectPage from "./pages/dashboard/projects/EditProjectPage";
 
 const App = () => {
   const { isPageLoading } = useLoading();
@@ -52,12 +55,10 @@ const App = () => {
           <Route index element={<AdminAnalyticsPage />} />
           <Route path="blog" element={<AdminBlogPage />} />
           <Route path="blog/new" element={<CreateBlogPage />} />
+          <Route path="blog/:slug/edit" element={<EditBlogPage />} />
           <Route path="projects" element={<AdminProjectPage />} />
-          {/* <Route path="projects/new" element={<CreateProjectPage />} /> */}
-
-          {/* <Route path="blog/:id/edit" element={<EditBlogPage />} /> */}
-          {/* <Route path="analytics" element={<AnalyticsPage />} />
-          <Route path="projects/:id/edit" element={<EditProjectPage />} /> */}
+          <Route path="projects/new" element={<CreateProjectPage />} />
+          <Route path="projects/:slug/edit" element={<EditProjectPage />} />
         </Route>
 
         <Route path="/*" element={<NotFoundPange />}></Route>

@@ -4,7 +4,13 @@ import React from "react";
 
 const CreateBlogPage = () => {
   const { loading, createNewBlog } = useNewBlog();
-  return <BlogForm onSubmit={createNewBlog} isSubmitting={loading} />;
+  return (
+    <BlogForm
+      onSubmit={createNewBlog}
+      isSubmitting={loading}
+      initialData={null}
+    />
+  );
 };
 
 export default CreateBlogPage;

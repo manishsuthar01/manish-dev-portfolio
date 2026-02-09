@@ -56,7 +56,6 @@ const ProjectTable = ({ deleteProject, projects, setProjects }) => {
           <tbody className="divide-y divide-border">
             {projects?.map((project) => (
               <tr key={project._id} className="group transition-colors">
-                {/* Project Info & Featured Badge */}
                 <td className="px-6 py-5">
                   <div className="flex flex-col">
                     <div className="flex items-center gap-2">
@@ -76,7 +75,6 @@ const ProjectTable = ({ deleteProject, projects, setProjects }) => {
                   </div>
                 </td>
 
-                {/* Tech Stack Tags */}
                 <td className="px-6 py-5">
                   <div className="flex flex-wrap gap-1 max-w-50">
                     {project.techStack?.map((tech, index) => (
@@ -90,7 +88,6 @@ const ProjectTable = ({ deleteProject, projects, setProjects }) => {
                   </div>
                 </td>
 
-                {/* Quick Links */}
                 <td className="px-6 py-5">
                   <div className="flex gap-3">
                     {project.links?.github && (
@@ -132,12 +129,11 @@ const ProjectTable = ({ deleteProject, projects, setProjects }) => {
                   </div>
                 </td>
 
-                {/* Actions */}
                 <td className="px-6 py-5 text-right">
                   <div className="flex justify-end items-center gap-4">
                     <button
                       onClick={() =>
-                        navigate(`/dashboard/projects/edit/${project._id}`)
+                        navigate(`/dashboard/projects/${project.slug}/edit`)
                       }
                       className="text-sm font-weight-semibold text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
                     >

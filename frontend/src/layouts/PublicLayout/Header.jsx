@@ -56,7 +56,7 @@ const Header = () => {
             to="/"
             className="font-jakarta text-xl font-light tracking-tighter text-foreground"
           >
-            Manish
+            Manish Suthar
           </NavLink>
         </div>
         <nav className="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-[0.3em] text-muted-foreground font-medium">
